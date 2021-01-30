@@ -8,6 +8,7 @@ public class RandomStarSpawner : MonoBehaviour {
   public GameObject starsContainer;
   public int numStars = 100;
   public int dist = 500;
+  public int size = 5;
 
   // Start is called before the first frame update
   void Start() {
@@ -20,6 +21,7 @@ public class RandomStarSpawner : MonoBehaviour {
   void SpawnRandom() {
     var rand = Random.onUnitSphere * dist;
     rand.y = Mathf.Abs(rand.y);
-    Instantiate(starTemplate, rand, new Quaternion(), starsContainer.transform);
+    var obj = Instantiate(starTemplate, rand, new Quaternion(), starsContainer.transform);
+    obj.transform.localScale = new Vector3(size, size, size);
   }
 }
