@@ -2,27 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Camera-Control/Character Outline")]
-public class CharacterOutline : MonoBehaviour {
+public class Penguin : MonoBehaviour {
   public int dist = 550;
-  public int size = 100;
-  public GameObject outlineTemplate;
-  public GameObject outline;
-  public GameObject starsTemplate;
-  public GameObject stars;
+  public int size = 75;
+  public GameObject starTemplate;
 
+  private GameObject outline;
+  private GameObject stars;
 
-  // Start is called before the first frame update
   void Start() {
+    outline = transform.Find("lines").gameObject;
+    stars = transform.Find("stars").gameObject;
     placeCharacter();
   }
 
 
-  void placeCharacter() {
-    //// lines
-    //outline = Instantiate(outlineTemplate, )
-
-
+  private void placeCharacter() {
     // get location on sphere
     var rand = Random.onUnitSphere * dist;
     rand.y = Mathf.Abs(rand.y);
@@ -30,7 +25,6 @@ public class CharacterOutline : MonoBehaviour {
 
     // orient toward camera
     transform.rotation = Quaternion.LookRotation(transform.position - Vector3.zero);
-    //transform.LookAt(Vector3.zero);
 
     // size
     transform.localScale = new Vector3(size, size, size);
@@ -38,4 +32,5 @@ public class CharacterOutline : MonoBehaviour {
 
     // TODO: rotate wrt to camera
   }
+
 }
